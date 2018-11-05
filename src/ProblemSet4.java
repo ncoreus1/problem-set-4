@@ -21,7 +21,18 @@
 public class ProblemSet4 {
 	
 	public static void main(String[] args) {
+		ProblemSet4 ps = new ProblemSet4();
 		
+		ps.surroundMe("ABCD", "EFG");
+		ps.endsMeet("qwerty", 2);
+		ps.doubleVision("Tesla");
+		ps.upOrDown(12.5, 'f');
+		ps.addMe("Nice", true);
+		ps.centered("string", "String");
+		ps.middleMan("String");
+		ps.countMe("Yesterday", 'y');
+		ps.isNotEqual("Is not is not");
+		ps.triplets("String");
 	}
 	
 	/**
@@ -38,7 +49,14 @@ public class ProblemSet4 {
 	 * @return a String constructed from @in and @out of the format AAXYZBB
 	 */
 	
-	// your method signature here
+	public String surroundMe(String out, String in) {
+		if (out == null || in == null) {
+		return out.substring(0, 2) + in + out.substring(2);
+		}
+		else {
+			return null;
+		}
+	}
 	
 	/**
 	 * @endsMeet is a public method that accepts a String and an integer as input, and
@@ -54,7 +72,13 @@ public class ProblemSet4 {
 	 * @return a String constructed from the first @n and last @n characters of @str
 	 */
 	
-	// your method signature here
+	public void endsMeet(String str, int n) {
+		int length = str.length();
+		String NewString = str.substring(0, n) + str.substring(length - n);
+		if (length <= 10 && length > 0 && length < n) {
+			System.out.println(NewString);
+		}
+	}
 	
 	/**
 	 * @middleMan is a public method that accepts a single String as input, and
@@ -69,7 +93,15 @@ public class ProblemSet4 {
 	 * @return a 3-character String constructed from the middle 3 characters of @str
 	 */
 	
-	// your method signature here
+	public String middleMan(String str) {
+		if (str.length() % 2 == 1) {
+			String NewString = str.substring(str.length() / 2 - 1, str.length() / 2 + 2);
+			return NewString;
+		}
+		else {
+			return null;
+		}
+	}
 	
 	/**
 	 * @doubleVision is a public method that accepts a single String as input, and
@@ -84,7 +116,18 @@ public class ProblemSet4 {
 	 * @return a String where each character in @str is duplicated in the format AABBCC
 	 */
 	
-	// your method signature here
+	public String doubleVision(String str) {
+		String NewString = "";
+		if (str == null) {
+			for (int i = 0; i < str.length(); i++) {
+				NewString = NewString + str.charAt(i) + str.charAt(i);
+			}
+			return NewString;
+		}
+		else {
+			return null;
+		}
+	}
 	
 	/**
 	 * @centered is a public method that accepts a single String as input, and
@@ -100,8 +143,17 @@ public class ProblemSet4 {
 	 * 
 	 * @return true if @target is in the middle of @str and false if it is not
 	 */
-	
-	// your method signature here
+
+	public boolean centered(String str, String target) {
+		if (str == (null) || target == (null) || target.length() != 3) {
+			return false;
+		}
+		if (target.equals( str.substring((str.length() / 2) - 1 , (str.length() / 2) + 2))) {
+			return true;
+		}
+		return false;
+	}
+
 	
 	/**
 	 * @upOrDown is a public method that accepts a decimal value and a character as
@@ -117,7 +169,27 @@ public class ProblemSet4 {
 	 * @return the result of the operation as an @int
 	 */
 	
-	// your method signature here
+	public int upOrDown(double decimal, char direction) {
+		int decimal2 = (int)decimal;
+		if (decimal % Math.floor(decimal) != 0 && direction == 'f' || direction == 'c') {
+			switch(direction) {
+			case 'f':
+			Math.floor(decimal);
+			break;
+			case 'c':
+				if (decimal - Math.floor(decimal) > 0.5) {
+				decimal += 0.5;
+				Math.round(decimal);
+				break;
+				}
+				else {
+					Math.round(decimal);
+					break;
+				}
+			}
+		}
+		return decimal2;
+	}
 	
 	/**
 	 * @countMe is a public method that accepts a String and a character as input,
@@ -135,7 +207,21 @@ public class ProblemSet4 {
 	 * @return the number of words in @text that end with @end
 	 */
 	
-	// your method signature here
+	public int countMe(String text, char end) {
+		if (text == (null)) {
+			return -1;
+		}
+		if (!Character.isLetter(end)) {
+			return -1;
+		}
+		int count = 0;
+		for (int i = 0; i < text.length(); i++) {
+			if (text.charAt(i) == end && text.charAt(i + 1) == ' ') {
+				count++;
+			}
+		}
+		return count;
+	}
 	
 	/**
 	 * @isNotEqual is a public method that accepts a String as input, and
@@ -150,7 +236,21 @@ public class ProblemSet4 {
 	 * @return true if the appearances of is == the appearances of not; false otherwise
 	 */
 	
-	// your method signature here
+	public boolean isNotEqual(String str) {
+		int isCount = 0;
+		int notCount = 0;
+		for (int i = 1; i < str.length(); i++) {
+			if (str.substring(i - 1, i) == "is") {
+				isCount++;
+			}
+		}
+		for (int h = 1; h < str.length(); h++) {
+			if (str.substring(h - 1, h) == "not") {
+				notCount++;
+			}
+		}
+		return isCount == notCount;
+	}
 	
 	/**
 	 * @triplets is a public method that accepts a single String as input, and
@@ -166,7 +266,23 @@ public class ProblemSet4 {
 	 * @return the number of triplets in @str
 	 */
 	
-	// your method signature here
+
+	public int triplets(String str) {
+		if (str == (null)) {
+			return -1;
+		}
+		int count = 0;
+		for (int i = 0; i < str.length() - 2; i++) {
+			if (Character.isLetter(str.charAt(i)) == false) {
+				return -1;
+			}
+			if (str.charAt(i) == str.charAt(i + 1) && str.charAt(i) == str.charAt(i + 2)) {
+				count++;
+			}
+		}
+		return count;
+	}
+
 	
 	/**
 	 * @addMe is a public method that accepts a String and a boolean as input, and
@@ -175,7 +291,7 @@ public class ProblemSet4 {
 	 * Given a String, compute and return either the sum of the digits or the sum of the numbers
 	 * contained within that String. If @digits is true, then sum the digits individually. If it
 	 * is false, sum the numbers. A number is defined as a consecutive series (possibly 1) of
-	 * digits in the String. Return -1 if the input specifcations are violated.
+	 * digits in the String. Return -1 if the input specifications are violated.
 	 * 
 	 * @param str - a String of alphanumeric text
 	 * @param digits - indicates whether to sum the digits or the numbers
@@ -183,5 +299,37 @@ public class ProblemSet4 {
 	 * @return the sum of the digits or numbers as specified by @digits
 	 */
 	
-	// your method signature here
+	public int addMe(String str, boolean digits) {
+		int sum = 0;
+		if (digits == true) {
+			for (int i = 0; i < str.length(); i++) {
+				if (Character.isDigit(str.charAt(i))) {
+					sum += (int)str.charAt(i);
+				}
+			}
+		}
+		else if (digits == false) {
+			int tens = 0;
+			for (int i = 0; i < str.length(); i++) {
+				if (Character.isDigit(str.charAt(i))) {
+					tens *= 10;
+					tens += (int)str.charAt(i);
+				}
+				else if (!Character.isAlphabetic(str.charAt(i))) {
+					return -1;
+				}
+				else {
+					sum += tens;
+					tens = 0;
+				}
+			}
+			sum += tens; 
+		}
+		return sum;
+	}
+	
+	
+	// 1abc2abc3 == 6
+	// 12abc3
+	
 }
